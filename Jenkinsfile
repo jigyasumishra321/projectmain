@@ -1,7 +1,5 @@
 pipeline {
-    agent any
-    tools{
-        maven 'maven_3_5_0'
+   
     }
     stages{
         stage('Build Maven'){
@@ -13,7 +11,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t jigyasumishra321/devops-integration .'
+                    sh 'docker build -t jigyasumishra321/new .'
                 }
             }
         }
@@ -24,7 +22,7 @@ pipeline {
                    sh 'docker login -u jigyasumishra321 -p ${dockerhubpwd}'
 
 }
-                   sh 'docker push javatechie/devops-integration'
+                   sh 'docker push jigyasumishra321/new'
                 }
             }
         }
