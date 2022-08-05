@@ -30,6 +30,16 @@ pipeline {
                 script{
                    kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'kubernetes')
                    sshagent(['kuberneteslogin']) {
+                      sh "scp -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@172.31.13.174:/home/ubuntu"
+                    sh "ssh ubuntu@172.31.13.174 sudo kubectl delete -f ."
+                    script{
+                        try{
+                            sh "ssh ubuntu@172.31.13.174 sudo kubectl apply -f ."
+                        }catch(error){
+                            sh "ssh ubuntu@172.31.13.174 sudo kubectl create -f ."
+                        }
+                        }
+                    }
     
 }
                    
