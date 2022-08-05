@@ -27,11 +27,10 @@ pipeline {
         }
         stage('Deploy to k8s'){
             steps{
-               dir ('/var/lib/jenkins/workspace/project1'){
+               dir ('/var/lib/jenkins/workspace/project1') {
   
                    sshagent(['kuberneteslogin']) {
-                      sh "scp -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@172.31.13.174:/home/ubuntu"
-                    sh "ssh ubuntu@172.31.13.174 sudo kubectl delete -f ."
+                    sh "scp -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@172.31.13.174:/home/ubuntu"
                     script{
                         try{
                             sh "ssh ubuntu@172.31.13.174 sudo kubectl apply -f ."
