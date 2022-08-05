@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy to k8s'){
             steps{
                 script{
-                   kubernetesDeploy configs: '/home/ubuntu/.kube/config', kubeConfig: [path: ''], kubeconfigId: 'ad242d5b-33f9-4b48-a83e-fa1412d9b8c2', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+                   kubernetesDeploy configs: '', kubeConfig: [path: ''], kubeconfigId: 'bb09065e-d087-4ac9-89af-adc40a09ae2c', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
                 }
             
