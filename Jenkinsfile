@@ -27,6 +27,7 @@ pipeline {
         }
         stage('Deploy to k8s'){
             steps{
+               dir ('/var/lib/jenkins/workspace/project1'){
                 script{
                    kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'kubernetes')
                    sshagent(['kuberneteslogin']) {
@@ -45,7 +46,7 @@ pipeline {
                    
                     
                 }
-            
+            }
             }
         }
     }
