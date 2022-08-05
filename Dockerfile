@@ -1,4 +1,10 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD target/devops-integration.jar devops-integration.jar
-ENTRYPOINT ["java","-jar","/devops-integration.jar"]
+#This is a sample Image 
+FROM ubuntu 
+MAINTAINER jigyasu.mishra@volansys.com 
+
+FROM ubuntu 
+RUN apt update 
+RUN apt install –y apache2 
+RUN apt install –y apache2-utils 
+RUN apt clean 
+EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
