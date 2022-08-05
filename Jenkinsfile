@@ -30,6 +30,7 @@ pipeline {
                dir ('/var/lib/jenkins/workspace/project1') {
   
                    sshagent(['kuberneteslogin']) {
+                      sh " cd /var/lib/jenkins/workspace/project1 "
                     sh "scp -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@172.31.13.174:/home/ubuntu"
                     script{
                         try{
