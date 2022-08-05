@@ -31,6 +31,9 @@ pipeline {
                     kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'k8sconfigpwd')
                 }
             
+            }
         }
+    }
+}
     
     
