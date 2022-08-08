@@ -22,6 +22,7 @@ pipeline {
     
 }
                    sh 'docker push jigyasumishra321/new1'
+                   echo 'Hello'
                 }
             }
         }
