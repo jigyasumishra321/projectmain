@@ -30,11 +30,8 @@ pipeline {
             steps{
                dir ('/var/lib/jenkins/workspace/project1') {
   
-                   sshagent(['kuberneteslogins']) {
-                      sh " cd /var/lib/jenkins/workspace/project1 "
-                      sh " ls -ltr "
-                      sh "kubernetesDeploy configs: '', credentialsType: 'Text', enableConfigSubstitution: false, kubeConfig: [path: '/home/ubuntu/.kube'], kubeconfigId: '', secretName: '', ssh: [sshCredentialsId: 'kube123', sshServer: 'https://192.168.49.2:8443'], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']"
-                    sh "scp -i deploymentservice.yml ubuntu@192.168.49.2:/home/ubuntu"
+                  sshagent(['kuberneteslogins']) {
+                    sh "scp -o deploymentservice.yml ubuntu@192.168.49.2:/home/ubuntu"
                     script{
                         try{
                             sh "ssh ubuntu@192.168.49.2 sudo kubectl apply -f ."
