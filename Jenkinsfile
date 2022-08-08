@@ -10,7 +10,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t jigyasumishra321/new .'
+                    sh 'docker build -t jigyasumishra321/new1 .'
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                    sh 'docker login -u jigyasumishra321 -p ${dockerhub}'
 
 }
-                   sh 'docker push jigyasumishra321/new'
+                   sh 'docker push jigyasumishra321/new1'
                 }
             }
         }
