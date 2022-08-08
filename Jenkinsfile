@@ -18,8 +18,8 @@ pipeline {
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhub')]) {
-                   sh 'docker login -u jigyasumishra321 -p ${dockerhub}'
-
+                      sh 'docker login -u jigyasumishra321 -p ${dockerhub}'
+    
 }
                    sh 'docker push jigyasumishra321/new1'
                 }
