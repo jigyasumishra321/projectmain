@@ -31,6 +31,7 @@ pipeline {
                dir ('/var/lib/jenkins/workspace/project1') {
                   sshagent(['eec812d7-eeea-4bbf-89f8-276dec0a62d9']) {
                     sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@172.31.25.238:/home/ubuntu"
+                     sh "ssh ubuntu@172.31.25.238 sudo kubectl delete -f ."
                     script{
                         try{
                             sh "ssh ubuntu@172.31.25.238 sudo kubectl apply -f ."
