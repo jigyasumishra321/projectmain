@@ -30,13 +30,13 @@ pipeline {
             steps{
                dir ('/var/lib/jenkins/workspace/project1') {
                   sshagent(['eec812d7-eeea-4bbf-89f8-276dec0a62d9']) {
-                    sh "scp -i keyyy.pem deploymentservice.yml ubuntu@172.31.25.238:/home/ubuntu"
-                     sh "ssh ubuntu@172.31.25.238 sudo kubectl delete -f ."
+                    sh "scp -i keyyy.pem deploymentservice.yml ubuntu@54.146.158.22:/home/ubuntu"
+                     sh "ssh ubuntu@54.146.158.22 sudo kubectl delete -f ."
                     script{
                         try{
-                            sh "ssh ubuntu@172.31.25.238 sudo kubectl apply -f ."
+                            sh "ssh ubuntu@54.146.158.22 sudo kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ubuntu@172.31.25.238 sudo kubectl create -f ."
+                            sh "ssh ubuntu@54.146.158.22 sudo kubectl create -f ."
                         }
                         }
                     }
