@@ -34,7 +34,7 @@ pipeline {
                       
                     sh "scp -i jenkins.pem deploymentservice.yml ubuntu@54.91.43.23:/home/ubuntu"
                      sh "ssh ubuntu@54.91.43.23 sudo kubectl delete -f ."
-                      }
+                      
                     script{
                         try{
                             sh "ssh ubuntu@54.91.43.23 sudo kubectl apply -f ."
