@@ -4,7 +4,7 @@ pipeline {
         stage('Build'){
             steps{
                script{
-                sh 'git pull'
+                sh 'git pull origin/main'
                 }
             }
         }
