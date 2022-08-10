@@ -3,8 +3,9 @@ pipeline {
     stages{
         stage('Build'){
             steps{
+               script{
                 sh 'git clone https://github.com/jigyasumishra321/projectmain.git'
-                
+                }
             }
         }
         stage('Build docker image'){
