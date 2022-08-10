@@ -3,7 +3,9 @@ pipeline {
     stages{
         stage('Build'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jigyasumishra321/projectmain.git']]])
+                git branch: 'main',
+                credentialsId: 'gitlog',
+                url: 'https://github.com/jigyasumishra321/projectmain.git'
                 
             }
         }
