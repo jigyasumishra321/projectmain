@@ -23,6 +23,7 @@ pipeline {
     
 }
                    sh 'docker push jigyasumishra321/new3'
+                   sh 'cp deploymentservice.yml /root/
                    echo 'Hello'
                 }
             }
