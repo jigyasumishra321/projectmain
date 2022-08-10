@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy to k8s'){
             steps{
                dir ('/var/lib/jenkins/workspace/project1') {
-                  sshagent(['eec812d7-eeea-4bbf-89f8-276dec0a62d9']) {
+                  sshagent(['780f787d-3efe-4c57-8fb8-60841381375c']) {
                     sh "scp -i jenkins.pem deploymentservice.yml ubuntu@54.91.43.23:/home/ubuntu"
                      sh "ssh ubuntu@54.91.43.23 sudo kubectl delete -f ."
                     script{
