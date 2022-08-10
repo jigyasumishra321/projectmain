@@ -4,7 +4,7 @@ pipeline {
         stage('Build'){
             steps{
                script{
-                sh 'git clone https://github.com/jigyasumishra321/projectmain.git'
+                sh 'git pull'
                 }
             }
         }
