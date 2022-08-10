@@ -3,9 +3,7 @@ pipeline {
     stages{
         stage('Build'){
             steps{
-                git branch: 'main',
-                credentialsId: 'gitlog',
-                url: 'https://github.com/jigyasumishra321/projectmain.git'
+                sh 'git clone https://github.com/jigyasumishra321/projectmain.git'
                 
             }
         }
