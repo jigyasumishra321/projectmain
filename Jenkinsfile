@@ -21,6 +21,7 @@ pipeline {
                       sh 'docker login -u jigyasumishra321 -p ${dockerhub}'
     
 }
+                   {
                    sh 'docker push jigyasumishra321/new4'
                 }
             }
@@ -43,7 +44,7 @@ pipeline {
                     }
     
 }
-                   
+            }               
                     
                 }
             }
