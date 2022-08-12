@@ -39,13 +39,10 @@ pipeline {
                         }catch(error){
                             sh "ssh ubuntu@54.90.168.156 sudo kubectl create -f ."
                         }
-                        }
-                    }
-    
-}
-                   
-                    
-                }
-            }
-            }
+                     }
+                  }
+               }    
+             }
+           }
         }
+      }
