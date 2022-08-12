@@ -10,6 +10,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
+                    sh'rm -rf *'
                     sh 'docker build -t jigyasumishra321/new4 .'
                 }
             }
