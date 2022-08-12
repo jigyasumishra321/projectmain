@@ -1,51 +1,48 @@
 pipeline {
    agent any
     stages{
-        stage('Build'){
+        stage('Build Maven'){
             steps{
-               script{
-                sh 'git clone https://github.com/jigyasumishra321/projectmain.git'
-                }
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git', url: 'https://github.com/jigyasumishra321/projectmain.git']]])
+                
             }
         }
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t jigyasumishra321/new3 .'
+                    sh 'docker build -t jigyasumishra321/new1 .'
                 }
             }
         }
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhub1')]) {
-                      sh 'docker login -u jigyasumishra321 -p ${dockerhub1}'
+                   withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhub')]) {
+                      sh 'docker login -u jigyasumishra321 -p ${dockerhub}'
     
 }
-                   sh 'docker push jigyasumishra321/new3'
-                   sh 'cp deploymentservice.yml /root/'
-                   echo 'Hello'
+                   sh 'docker push jigyasumishra321/new1'
                 }
             }
         }
         stage('Deploy to k8s'){
             steps{
                dir ('/var/lib/jenkins/workspace/project1') {
-                   script{
-                      
-                    sh "scp -i jenkins.pem deploymentservice.yml ubuntu@54.91.43.23:/home/ubuntu"
-                     sh "ssh ubuntu@54.91.43.23 sudo kubectl delete -f ."
-                      
+  
+                   sshagent(['kuberneteslogin']) {
+                      sh " cd /var/lib/jenkins/workspace/project1 "
+                      sh " ls -ltr "
+                    sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@192.168.49.2:/home/ubuntu"
                     script{
                         try{
-                            sh "ssh ubuntu@54.91.43.23 sudo kubectl apply -f ."
+                            sh "ssh ubuntu@192.168.49.2 sudo kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ubuntu@54.91.43.23 sudo kubectl create -f ."
+                            sh "ssh ubuntu@192.168.49.2 sudo kubectl create -f ."
                         }
                         }
                     }
-               }
-
+    
+}
                    
                     
                 }
@@ -54,5 +51,4 @@ pipeline {
         }
   
 
-    
-    
+ 
