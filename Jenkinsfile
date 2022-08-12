@@ -13,7 +13,6 @@ pipeline {
                     sh 'docker build -t jigyasumishra321/new4 .'
                 }
             }
-        }
         stage('Push image to Hub'){
             steps{
                 script{
@@ -22,6 +21,7 @@ pipeline {
     
 }
                    {
+                      sh'rm -rf *'
                    sh 'docker push jigyasumishra321/new4'
                 }
             }
@@ -45,7 +45,7 @@ pipeline {
     
 }
             }               
-                    
+        }       
                 }
             }
             }
