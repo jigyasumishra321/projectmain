@@ -31,7 +31,7 @@ pipeline {
                   script {
                     sh """
                     #!/bin/bash
-                    scp -i new.pem deploymentservice.yml ubuntu@54.242.234.124:/home/ubuntu
+                    scp -i -y new.pem deploymentservice.yml ubuntu@54.242.234.124:/home/ubuntu
                     """
                 }
               }
