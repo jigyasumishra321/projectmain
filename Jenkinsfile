@@ -32,12 +32,12 @@ pipeline {
                    sshagent(['kubelogin']) {
                       sh " cd /var/lib/jenkins/workspace/project1 "
                       sh " ls -ltr "
-                    sh "scp -i jennn.pem deploymentservice.yml ubuntu@54.90.168.156:/home/ubuntu"
+                    sh "scp -i jennn.pem deploymentservice.yml ubuntu@172.31.25.161:/home/ubuntu"
                     script{
                         try{
-                            sh "ssh ubuntu@54.90.168.156 sudo kubectl apply -f ."
+                            sh "ssh ubuntu@172.31.25.161 sudo kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ubuntu@54.90.168.156 sudo kubectl create -f ."
+                            sh "ssh ubuntu@172.31.25.161 sudo kubectl create -f ."
                         }
                      }
                   }
