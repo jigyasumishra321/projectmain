@@ -32,7 +32,7 @@ pipeline {
                    sshagent(['kuberneteslogin']) {
                       sh " /var/lib/jenkins/projectmain "
                       sh " ls -ltr "
-                    sh "scp -i jennn.pem deploymentservice.yml ubuntu@172.31.25.161:/home/ubuntu"
+                    sh "scp -i new.pem deploymentservice.yml ubuntu@172.31.25.161:/home/ubuntu"
                     script{
                         try{
                             sh "ssh ubuntu@172.31.25.161 sudo kubectl apply -f ."
