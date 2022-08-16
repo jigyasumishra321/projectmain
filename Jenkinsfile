@@ -27,12 +27,12 @@ pipeline {
         }
         stage('Deploy to k8s'){
             steps{
-               dir ('/var/lib/jenkins/projectmain') {
+               dir ('/var/lib/jenkins/project2') {
   
                    sshagent(['kuberneteslogin']) {
-                      sh " /var/lib/jenkins/projectmain "
+                      sh "cd /var/lib/jenkins/project2 "
                       sh " ls -ltr "
-                    sh "scp -i new.pem deploymentservice.yml ubuntu@54.242.234.124:/home/ubuntu"
+                      sh "scp -i new.pem deploymentservice.yml ubuntu@54.242.234.124:/home/ubuntu"
                     script{
                         try{
                             sh "ssh ubuntu@54.242.234.124 sudo kubectl apply -f ."
@@ -44,5 +44,17 @@ pipeline {
                }    
              }
            }
+        stage("DEPLOY"){
+            steps {
+               dir ('/var/lib/jenkins/project2') {
+                  script {
+                    sh """
+                    #!/bin/bash
+                    scp -i new.pem deploymentservice.yml ubuntu@54.242.234.124:/home/ubuntu
+                    """
+                }
+              }
+            }
+          }
         }
       }
