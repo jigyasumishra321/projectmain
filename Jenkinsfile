@@ -10,18 +10,18 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t jigyasumishra321/new4 .'
+                    sh 'docker build -t jigyasumishra321/new5 .'
                 }
             }
         }
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhub')]) {
+                   withCredentials([string(credentialsId: 'dockerlog', variable: 'dockerhub')]) {
                       sh 'docker login -u jigyasumishra321 -p ${dockerhub}'
     
 }
-                   sh 'docker push jigyasumishra321/new4'
+                   sh 'docker push jigyasumishra321/new5'
                 }
             }
         }
