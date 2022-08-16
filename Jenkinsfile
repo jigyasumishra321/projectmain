@@ -27,10 +27,10 @@ pipeline {
         }
         stage('Deploy to k8s'){
             steps{
-               dir ('/var/lib/jenkins/workspace/project1') {
+               dir ('/var/lib/jenkins/projectmain') {
   
                    sshagent(['kubelogin']) {
-                      sh " cd /var/lib/jenkins/workspace/project1 "
+                      sh " /var/lib/jenkins/projectmain "
                       sh " ls -ltr "
                     sh "scp -i jennn.pem deploymentservice.yml ubuntu@172.31.25.161:/home/ubuntu"
                     script{
