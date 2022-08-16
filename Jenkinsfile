@@ -26,18 +26,11 @@ pipeline {
             }
         }
         stage("DEPLOY"){
-            steps {
-               dir ('/var/lib/jenkins/project2') {
-                  script {
-                    sh """
-                    #!/bin/bash
-                    cp deploymentservice.yml /root/
-                    cd /root/
-                    scp -i new.pem deploymentservice.yml ubuntu@54.242.234.124:/home/ubuntu
-                    """
-                }
-              }
-            }
+            node {
+  sshagent (credentials: ['deploy-dev']) {
+    sh 'ssh -o StrictHostKeyChecking=no -l cloudbees 192.168.1.106 uname -a'
+  }
+}
           }
         }
       }
