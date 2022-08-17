@@ -5,7 +5,7 @@ MAINTAINER jigyasu.mishra@volansys.com
 RUN mkdir /opt/tomcat/
 
 WORKDIR /opt/tomcat
-RUN yum -y update
+RUN yum update
 RUN yum -y install wget 
 RUN yum install -y tar.x86_64 
 RUN yum clean all
