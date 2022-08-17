@@ -25,6 +25,28 @@ pipeline {
                 }
             }
         }
+       stage('Deploy to k8s'){
+            steps{
+               dir ('/var/lib/jenkins/workspace/project1') {
+  
+                   sshagent(['kuberneteslogin']) {
+                      sh " cd /var/lib/jenkins/workspace/project1 "
+                      sh " ls -ltr "
+                    sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@34.201.144.45:"
+                    script{
+                        try{
+                            sh "ssh ubuntu@34.201.144.45 sudo kubectl apply -f ."
+                        }catch(error){
+                            sh "ssh ubuntu@34.201.144.45 sudo kubectl create -f ."
+                        }
+                        }
+                    }
+    
+}
+                   
+                    
+                }
+            }
         
         }
       }
