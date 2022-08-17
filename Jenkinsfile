@@ -10,7 +10,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                    sh 'docker build -t jigyasumishra321/nginx .'
+                    sh 'DOCKER_BUILDKIT=1 docker build .'
                 }
             }
         }
