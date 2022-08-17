@@ -1,23 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodeapp-deployment
+  name: nginx-deployment
   labels:
-    app: nodeapp
+    app: nginx
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: nodeapp
+      app: nginx
   template:
     metadata:
       labels:
-        app: nodeapp
+        app: nginx
     spec:
       containers:
-        - name: nodeserver
-          image: jigyasumishra321/new6
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 3000
-      restartPolicy: 
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+    
