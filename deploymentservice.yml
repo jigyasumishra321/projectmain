@@ -14,15 +14,16 @@ spec:
   template:
     metadata:
       labels:
-        app: nodeapp 
+        app: nodeapp
     spec:
       containers:
-      - name: nodeserver
-        image: jigyasumishra321/new6
-        ports:
-        - containerPort: 3000
-        
-        
+        - name: nodeserver
+          image: jigyasumishra321/new6
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+      restartPolicy: Always
+
 ---
 
 apiVersion: v1
@@ -31,10 +32,9 @@ metadata:
   name: nodeapp-service
 spec:
   selector:
-    app: nodeapp 
-  type: LoadBalancer
+    app: nodeapp
   ports:
-  - protocol: TCP
-    port: 5000
-    targetPort: 3000
-    nodePort: 31110
+    - protocol: TCP
+      port: 5000
+      targetPort: 3000
+      nodePort: 31110
