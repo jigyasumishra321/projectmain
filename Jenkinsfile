@@ -29,7 +29,7 @@ pipeline {
             steps{
                dir ('/var/lib/jenkins/workspace/project1') {
   
-                   sshagent(['kuberneteslogin']){
+                   sshagent(['kuberneteslogins']){
                       sh " cd /var/lib/jenkins/workspace/project1 "
                       sh " ls -ltr "
                     sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@34.229.195.234:"
