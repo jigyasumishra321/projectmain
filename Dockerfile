@@ -1,18 +1,13 @@
-FROM centos
+# syntax=docker/dockerfile:1
 
-MAINTAINER jigyasu.mishra@volansys.com
-RUN mkdir /opt/tomcat/
+FROM eclipse-temurin:17-jdk-jammy
 
-WORKDIR /opt/tomcat
-RUN curl -O https://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.40/bin/apache-tomcat-8.5.40.tar.gz
-RUN tar -xvf apache*.tar.gz
-RUN mv apache-tomcat-8.5.40/* /opt/tomcat/.
-RUN yum -y install java
-RUN java -version
+WORKDIR /app
 
-WORKDIR /opt/tomcat/webapps
-RUN wget https://github.com/AKSarav/SampleWebApp/raw/master/dist/SampleWebApp.war
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
 
-EXPOSE 8080
+COPY src ./src
 
-CMD ["/opt/tomcat/bin/catalina.sh", ""]
+CMD ["./mvnw", "spring-boot:run"]
