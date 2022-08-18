@@ -35,9 +35,9 @@ pipeline {
                     sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@34.229.195.234:"
                     script{
                         try{
-                            sh "ssh ubuntu@34.229.195.234 sudo kubectl apply -f deploymentservice.yml"
+                            sh "ssh ubuntu@34.229.195.234 kubectl apply -f deploymentservice.yml"
                         }catch(error){
-                            sh "ssh ubuntu@34.229.195.234 sudo kubectl create -f deploymentservice.yml"
+                            sh "ssh ubuntu@34.229.195.234 kubectl create -f deploymentservice.yml"
                         }
                         }
                     }
