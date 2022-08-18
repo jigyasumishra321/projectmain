@@ -26,9 +26,13 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: service
+  name: Hello-World
+  namespace: default
 
 spec:
+ containers:
+      - name: nginx
+        image: jigyasumishra321/nginx
 
   type: LoadBalancer
 
