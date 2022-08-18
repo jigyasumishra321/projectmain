@@ -1,11 +1,6 @@
-#This is a sample Image 
 FROM ubuntu 
-MAINTAINER jigyasu.mishra@volansys.com 
-
-FROM ubuntu 
-RUN apt update 
-RUN apt install apache2 -y 
-RUN apt install apache2-utils -y
-RUN apt clean 
-EXPOSE 80 
-CMD [“/usr/sbin/apache2ctl”, “-D”, “FOREGROUND”]
+RUN apt-get update 
+RUN apt-get install –y apache2 
+RUN apt-get install –y apache2-utils 
+RUN apt-get clean 
+EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
