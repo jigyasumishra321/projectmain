@@ -29,15 +29,15 @@ pipeline {
             steps{
                dir ('/var/lib/jenkins/workspace/project1') {
   
-                   sshagent(['kuberneteslogin']) {
+                   sshagent(['kuberneteslogin']){
                       sh " cd /var/lib/jenkins/workspace/project1 "
                       sh " ls -ltr "
-                    sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@34.229.195.234:"
+                    sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@54.91.173.1:"
                     script{
                         try{
-                            sh "ssh ubuntu@34.229.195.234 sudo kubectl apply -f ."
+                            sh "ssh ubuntu@54.91.173.1 sudo kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ubuntu@34.229.195.234 sudo kubectl create -f ."
+                            sh "ssh ubuntu@54.91.173.1 sudo kubectl create -f ."
                         }
                         }
                     }
