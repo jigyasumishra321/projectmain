@@ -30,9 +30,7 @@ metadata:
   namespace: default
 
 spec:
- containers:
-      - name: nginx
-        image: jigyasumishra321/nginx
+ 
 
   type: LoadBalancer
 
