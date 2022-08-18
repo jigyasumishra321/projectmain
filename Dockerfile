@@ -1,13 +1,10 @@
-# syntax=docker/dockerfile:1
+#This is a sample Image 
+FROM ubuntu 
+MAINTAINER jigyasu.mishra@volansys.com 
 
-FROM eclipse-temurin:17-jdk-jammy
-
-WORKDIR /app
-
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:resolve
-
-COPY src ./src
-
-CMD ["./mvnw", "spring-boot:run"]
+FROM ubuntu 
+RUN apt update 
+RUN apt install –y apache2 
+RUN apt install –y apache2-utils 
+RUN apt clean 
+EXPOSE 80 CMD [“apache2ctl”, “-D”, “FOREGROUND”]
