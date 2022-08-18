@@ -30,7 +30,7 @@ metadata:
 
 spec:
 
-  type: NodePort
+  type: LoadBalancer
 
   selector:
 
