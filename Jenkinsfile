@@ -32,12 +32,12 @@ pipeline {
                    sshagent(['kuberneteslogin']) {
                       sh " cd /var/lib/jenkins/workspace/project1 "
                       sh " ls -ltr "
-                    sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@54.221.13.229:"
+                    sh "scp -o StrictHostKeyChecking=no deploymentservice.yml ubuntu@52.23.230.110:"
                     script{
                         try{
-                            sh "ssh ubuntu@54.221.13.229 kubectl apply -f deploymentservice.yml"
+                            sh "ssh ubuntu@52.23.230.110 kubectl apply -f deploymentservice.yml"
                         }catch(error){
-                            sh "ssh ubuntu@54.221.13.229 kubectl create -f deploymentservice.yml"
+                            sh "ssh ubuntu@52.23.230.110 kubectl create -f deploymentservice.yml"
                         }
                         }
                     }
