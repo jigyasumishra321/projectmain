@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git', url: 'https://github.com/jigyasumishra321/projectmain.git']]])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '7cd2b139-bf4d-4d6b-94a0-1e0ba41d2ac6', url: 'https://github.com/jigyasumishra321/projectmain.git']])
                 
             }
         }
@@ -17,7 +17,7 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'jigyasumishra321', variable: 'dockerlogin')]){
+                   withCredentials([usernamePassword(credentialsId: 'dockerlogin', passwordVariable: '', usernameVariable: '')]){
                       sh 'docker login -u jigyasumishra321 -p ${dockerlogin}'
     
 }
